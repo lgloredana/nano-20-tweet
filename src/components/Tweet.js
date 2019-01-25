@@ -26,7 +26,7 @@ class Tweet extends Component {
 
                 <img
                     src={avatar}
-                    alt={'Avatar of ${name}'}
+                    alt={`Avatar of ${name}`}
                     className='avatar'
                 />
                <div>
