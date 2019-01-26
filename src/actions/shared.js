@@ -11,9 +11,9 @@ export function handleInitialData () {
         return getInitialData()
             .then(({users, tweets}) =>
             {
-                dispatch(getTweets(tweets));
-                dispatch(getUsers(users));
                 dispatch(getAuthUser({id: AUTH_ID}));
+                dispatch(getUsers(users));
+                dispatch(getTweets(tweets));
                 dispatch(hideLoading())
             }
         )

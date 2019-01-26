@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import tweets from "./tweets";
 import users from "./users";
-import authUser from "./authUser";
+import authedUser from "./authUser"
 import {loadingBarReducer} from "react-redux-loading";
 
 export default combineReducers({
     tweets ,
     users,
-    authUser,
+    authedUser,
     loadingBar: loadingBarReducer
 })
