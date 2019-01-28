@@ -23,14 +23,7 @@ class NewTweet extends Component {
             text: ''
         }));
 
-        const newTweetInfo = {};
-        newTweetInfo.text = this.state.text;
-        newTweetInfo.author = this.props.authedUser;
-        newTweetInfo.replyingTo = '';
-
-        console.log(newTweetInfo);
-
-        // this.props.dispatch(handleSaveTweet(newTweetInfo));
+        this.props.dispatch(handleSaveTweet({text: this.state.text}));
     }
 
     render() {
@@ -64,12 +57,6 @@ class NewTweet extends Component {
     }
 }
 
-function mapStateToProps({authedUser}) {
-    return{
-        authedUser
-    }
-}
 
-
-export default connect(mapStateToProps)(NewTweet);
+export default connect()(NewTweet);
 

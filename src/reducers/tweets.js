@@ -20,8 +20,25 @@ export default function tweets(state = {}, action){
             }
         }
         case SAVE_TWEET:{
+            const { tweet } = action;
+
+            let replyingTo = {};
+
+            console.log('-----');
+            console.dir(tweet.replyingTo);
+
+            if( tweet.replyingTo !== null ){
+                replyingTo = {
+                    [tweet.replyingTo]:{
+                        ...state[tweet.replyingTo],
+                        replies: state[tweet.replyingTo].replies.concat([tweet.id])
+                    }
+                }
+            }
             return {
-                ...state
+                ...state,
+                ...replyingTo,
+                [action.tweet.id]: action.tweet
             }
         }
         default:

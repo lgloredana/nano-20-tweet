@@ -1,4 +1,5 @@
 import {saveLikeToggle, saveTweet} from "../utils/api";
+import {hideLoading, showLoading} from "react-redux-loading";
 
 
 export const GET_TWEETS = 'GET-TWEETS';
@@ -35,26 +36,27 @@ export function handleToggleLikedTweet(likedInfo) {
     }
 }
 
-function saveNewTweet(tweetInfo){
+function saveNewTweet(tweet){
     return {
         type: SAVE_TWEET,
-        text: tweetInfo.text,
-        author: tweetInfo.author,
-        replyingTo: tweetInfo.replyingTo
+        tweet
     }
 }
 
-export function handleSaveTweet(tweetInfo) {
-    return (dispatch) => {
-        saveTweet(tweetInfo)
+export function handleSaveTweet({text, replayTo}) {
+
+    return (dispatch, getState) => {
+        const { authedUser } =  getState();
+        const info = {text, author: authedUser.id, replayTo};
+        dispatch(showLoading());
+        saveTweet(info)
+            .then(
+                (tweet) => {
+                    dispatch(saveNewTweet(tweet));
+                })
             .then(
                 () => {
-                    dispatch(saveNewTweet(tweetInfo));
-                })
-            .catch(
-                (e) => {
-                    console.warn('Error in saving tweet', e);
-                    alert('There was an error saving the tweet. Try again.');
+                    dispatch(hideLoading());
                 }
             )
     }
