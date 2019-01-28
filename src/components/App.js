@@ -3,6 +3,8 @@ import {handleInitialData} from "../actions/shared";
 import { connect } from "react-redux";
 import Dashboard from "./Dashboard";
 import LoadingBar from "react-redux-loading";
+import Menu from "./Menu";
+import NewTweet from "./NewTweet";
 
 class App extends Component {
 
@@ -14,10 +16,10 @@ class App extends Component {
     render() {
         return (
           <div>
-              <div> Menu</div>
+              <div><Menu /></div>
               <LoadingBar/>
               Loading value = {this.props.loading}
-              { (this.props.loading === true) ? <div> Loading </div> : <Dashboard/>}
+              { (this.props.loading === true) ? <div> Loading </div> : <NewTweet/>}
           </div>
         )
      }

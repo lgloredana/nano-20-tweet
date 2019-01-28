@@ -1,4 +1,4 @@
-import {GET_TWEETS, TOGGLE_LIKED_TWEET} from "../actions/tweets";
+import {GET_TWEETS, SAVE_TWEET, TOGGLE_LIKED_TWEET} from "../actions/tweets";
 
 
 export default function tweets(state = {}, action){
@@ -17,6 +17,11 @@ export default function tweets(state = {}, action){
                         ? state[action.id].likes.filter((uid) => uid !== action.authedUser)
                         : state[action.id].likes.concat([action.authedUser])
                 }
+            }
+        }
+        case SAVE_TWEET:{
+            return {
+                ...state
             }
         }
         default:
