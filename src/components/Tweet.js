@@ -3,11 +3,12 @@ import {connect} from "react-redux";
 import {formatDate, formatTweet} from "../utils/helpers";
 import {TiArrowBackOutline, TiHeartOutline, TiHeartFullOutline} from 'react-icons/ti/index.js'
 import {handleToggleLikedTweet} from "../actions/tweets";
+import { Link, withRouter } from 'react-router-dom'
 
 class Tweet extends Component {
     toParent = (e, id) => {
         e.preventDefault();
-        // todo: add functionality for redirecting to the parent tweet details page
+        this.props.history.push(`/details/${id}`)
     };
 
     handleLike = (e) => {
@@ -26,9 +27,9 @@ class Tweet extends Component {
         if (tweet === null) {
             return <p> This Tweet doesn't exists </p>
         }
-        const {name, avatar, timestamp, text, hasLiked, likes, replies, parent} = tweet;
+        const {name, avatar, timestamp, text, hasLiked, likes, replies, parent, id} = tweet;
         return (
-            <div className='tweet'>
+            <Link to={`/tweet/${id}`} className='tweet'>
 
                 <img
                     src={avatar}
@@ -41,7 +42,7 @@ class Tweet extends Component {
                             <span>{name}</span>
                             <div>{formatDate(timestamp)}</div>
                             {parent && (
-                                <button className='replying-to' onClick={(e) => this.toParent(e, parent)}>
+                                <button className='replying-to' onClick={(e) => this.toParent(e, parent.id)}>
                                     Replay to @{parent.author}
                                 </button>
                             )}
@@ -60,7 +61,7 @@ class Tweet extends Component {
                         <span>{likes !== 0 && likes}</span>
                     </div>
                 </div>
-            </div>
+            </Link>
         )
     }
 }
@@ -80,4 +81,4 @@ function mapStateToProps({tweets, users, authedUser}, {id}) {
 }
 
 
-export default connect(mapStateToProps)(Tweet);
+export default withRouter(connect(mapStateToProps)(Tweet));

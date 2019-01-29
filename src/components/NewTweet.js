@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import connect from "react-redux/es/connect/connect";
 import {handleSaveTweet} from "../actions/tweets";
+import { Redirect } from 'react-router-dom'
 
 class NewTweet extends Component {
     state = {
@@ -23,13 +24,17 @@ class NewTweet extends Component {
         dispatch(handleSaveTweet({text: text, replyingTo: id}));
 
         this.setState( () => ({
-            text: ''
+            text: '',
+            toHome: id ? false : true
         }));
 
     }
 
     render() {
-        const {text} = this.state;
+        const {text, toHome} = this.state;
+        if (toHome === true) {
+            return <Redirect to='/' />
+        }
         const remainingChars = 280 - text.length;
         return (
             <div>

@@ -1,20 +1,24 @@
-import React, { Component } from 'react'
-import connect from "react-redux/es/connect/connect";
+import React  from 'react'
+import {NavLink} from "react-router-dom";
 
-class Menu extends Component {
-
-    openNewTweet = (e) => {
-        e.preventDefault();
-
-    };
-    render() {
-        return (
-            <div>
-                <button>Home</button>
-                <button onClick={(e) => this.openNewTweet(e)}>New tweet</button>
-            </div>
-        )
-    }
+export default function Menu() {
+    return (
+        <nav className='nav'>
+            <ul>
+                <li>
+                    <NavLink to='/' exact activeClassName='active'>
+                        Home
+                    </NavLink>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <NavLink to='/new' activeClassName='active'>
+                        New Tweet
+                    </NavLink>
+                </li>
+            </ul>
+        </nav>
+    )
 }
 
-export default connect()(Menu);
