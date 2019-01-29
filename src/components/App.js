@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import {handleInitialData} from "../actions/shared";
 import { connect } from "react-redux";
-import Dashboard from "./Dashboard";
 import LoadingBar from "react-redux-loading";
 import Menu from "./Menu";
-import NewTweet from "./NewTweet";
+import TweetDetails from "./TweetDetails";
 
 class App extends Component {
 
@@ -12,14 +11,15 @@ class App extends Component {
       this.props.dispatch(handleInitialData())
         console.info(this.props);
     }
-
+    // '6h5ims9iks66d4m7kqizmv' '3km0v4hf1ps92ajf4z2ytg'
     render() {
         return (
           <div>
               <div><Menu /></div>
               <LoadingBar/>
-              Loading value = {this.props.loading}
-              { (this.props.loading === true) ? <div> Loading </div> : <NewTweet/>}
+              { this.props.loading === true
+                  ? null
+                  : <TweetDetails match={{params: { id: '3km0v4hf1ps92ajf4z2ytg'}}}/>}
           </div>
         )
      }
@@ -27,9 +27,4 @@ class App extends Component {
 
 }
 
-function mapStateToProps({authedUser}) {
-    return {
-        loading : authedUser === null
-    }
-}
-export default connect(mapStateToProps)(App)
+export default connect()(App)

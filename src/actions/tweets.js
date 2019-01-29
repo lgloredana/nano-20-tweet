@@ -43,11 +43,11 @@ function saveNewTweet(tweet){
     }
 }
 
-export function handleSaveTweet({text, replayTo}) {
+export function handleSaveTweet({text, replyingTo}) {
 
     return (dispatch, getState) => {
         const { authedUser } =  getState();
-        const info = {text, author: authedUser.id, replayTo};
+        const info = {text, author: authedUser.id, replyingTo};
         dispatch(showLoading());
         saveTweet(info)
             .then(

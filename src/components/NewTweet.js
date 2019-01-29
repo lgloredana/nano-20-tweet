@@ -18,12 +18,14 @@ class NewTweet extends Component {
 
     SaveTweet(e){
         e.preventDefault();
+        const { text } = this.state;
+        const { dispatch, id } = this.props;
+        dispatch(handleSaveTweet({text: text, replyingTo: id}));
 
         this.setState( () => ({
             text: ''
         }));
 
-        this.props.dispatch(handleSaveTweet({text: this.state.text}));
     }
 
     render() {
@@ -57,6 +59,13 @@ class NewTweet extends Component {
     }
 }
 
+function mapStateToProps(state, {id}) {
+    return {
+        ...state,
+        id
+    }
 
-export default connect()(NewTweet);
+}
+
+export default connect(mapStateToProps)(NewTweet);
 
