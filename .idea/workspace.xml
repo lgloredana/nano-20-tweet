@@ -208,7 +208,7 @@
       <workItem from="1548329193167" duration="8332000" />
       <workItem from="1548660047827" duration="8280000" />
       <workItem from="1548673293605" duration="11614000" />
-      <workItem from="1549071837979" duration="922000" />
+      <workItem from="1549071837979" duration="1181000" />
     </task>
     <task id="LOCAL-00001" summary="feat: Add components&#10;&#10;* Add component : tweet, newTweet, dashboard = tweetList, tweetDetails,  ....&#10;* show tweets">
       <created>1548427027905</created>
@@ -249,7 +249,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43637000" />
+    <option name="totallyTimeSpent" value="43896000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="946" extended-state="6" />
